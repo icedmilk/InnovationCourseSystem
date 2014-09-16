@@ -1,0 +1,4 @@
+#Mon Sep 08 15:44:39 CST 2014
+eclipse.preferences.version=1
+validator.Checked=WebRoot/js/jquery-1.11.1.js,WebRoot/js/jquery.flip.min.js,WebRoot/js/jquery-ui.js,WebRoot/index.html
+validator.Unchecked=

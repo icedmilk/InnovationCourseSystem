@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>用户登录</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+
+<script src="js/jquery.js"></script>
+<script>
+	function startTime() {
+		var today = new Date();
+		var h = today.getHours();
+		var m = today.getMinutes();
+		var s = today.getSeconds();
+		// add a zero in front of numbers<10
+		m = checkTime(m);
+		s = checkTime(s);
+
+		$("div #time").empty();
+		$("div #time").append(h + ":" + m + ":" + s);
+
+		t = setTimeout(function() {
+			startTime();
+		}, 1000);
+	}
+
+	function checkTime(i) {
+		if (i < 10) {
+			i = "0" + i;
+		}
+		return i;
+	}
+
+	$(document).ready(function() {
+
+		$("#txt").click(function() {
+			$("#flipBoard").toggle(500);
+		});
+	});
+</script>
+
+
+
+
+
+</head>
+
+<body onload="startTime()">
+
+	<div id="stylized" class="myform">
+		<form id="form" name="form1" action="confirm.jsp" method="post">
+
+			<h1>用户登录</h1>
+			<div id="txt">
+				Made by Group 1 @ SoftWare Engineering
+				Course&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="time"></span>
+			</div>
+			<label>Student ID <span class="small">Enter your SID</span> </label>
+			<input size="30" type="text" name="username" id="name"
+				value="201110314047" /> <label>Password <span class="small">Enter
+					your password</span> </label> <input size="30" type="password" name="password"
+				id="password" value="123" />
+
+
+			<div style="text-align:center;">
+				<input type="radio" name="role" value="stu" checked> <span
+					id="radio">学生</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+					id="radio" type="radio" name="role" value="tea"> <span
+					id="radio">管理员</span> <br>
+				<button class="clickable" type="submit" name="submit">Submit</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button class="clickable" type="reset" name="reset">Reset</button>
+			</div>
+
+
+			<br>
+
+			<div class="spacer">
+				<a href="register.jsp">Register</a>
+			</div>
+			<br>
+		</form>
+	</div>
+
+
+	<div style="text-align:center;">
+<!-- 		<iframe id="flipBoard" style="display:none;" name="content_frame"
+			width=500 height=400 src="show.html" frameborder=0 scrolling="no"></iframe> -->
+	</div>
+
+
+</body>
+</html>

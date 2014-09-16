@@ -1,0 +1,81 @@
+@CHARSET "UTF-8";
+
+body{
+    font-family:Verdana, Arial,”Lucida Grande”, “Lucida Sans Unicode”, Verdana, Arial, Helvetica, sans-serif, "";
+    font-size:12px;
+}
+
+a{
+	color:#AF4B4B; 
+	text-decoration: none;
+	text-align: right;
+
+}
+
+A:hover {color:red;text-decoration : underline; position : relative;}
+p, form, button{border:0; margin:0; padding:0;}
+
+h1 {
+	letter-spacing: -1px;
+	color: #8981E5;
+	text-shadow: 2px 2px 1px rgba(0,0,0,.25);
+	font: normal 44px 黑体,'ColaborateThinRegular', Arial, sans-serif;
+}
+html , body{
+	line-height: 1;
+	background-color: #E4E9F3;
+
+}
+.clickable:hover {
+  cursor: pointer;
+}
+
+table.hovertable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.hovertable th {
+	background-color:#c3dde0;
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+table.hovertable tr {
+	background-color:#d4e3e5;
+}
+table.hovertable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+#stylized input{
+    /*float:left;*/
+    font-size:12px;
+    padding:4px 2px;
+    border:solid 1px #aacfe4;
+    /*width:200px;*/
+    margin:2px 0 20px 10px;
+}
+.choose
+{
+	cursor: pointer;
+}
+button{
+    clear:both;
+    /*margin-left:150px;*/
+    width:100px;
+    height:25px;
+    cursor: pointer;
+    background:#666666 url(img/button.png) no-repeat;
+    text-align:center;
+    line-height:31px;
+    color:#FFFFFF;
+    font-size:11px;
+    font-weight:bold;
+}
