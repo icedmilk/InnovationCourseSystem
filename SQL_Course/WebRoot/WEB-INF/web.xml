@@ -17,6 +17,21 @@
     <servlet-name>ShowCourseServlet</servlet-name>
     <servlet-class>servlet.ShowCourseServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>WhatIChoose</servlet-name>
+    <servlet-class>servlet.WhatIChoose</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>MessageBox</servlet-name>
+    <servlet-class>servlet.MessageBox</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>OverallSituation</servlet-name>
+    <servlet-class>servlet.OverallSituation</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -31,6 +46,18 @@
   <servlet-mapping>
     <servlet-name>ShowCourseServlet</servlet-name>
     <url-pattern>/CourseInfo</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>WhatIChoose</servlet-name>
+    <url-pattern>/ChosenCourse.show</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MessageBox</servlet-name>
+    <url-pattern>/MessageBox.show</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OverallSituation</servlet-name>
+    <url-pattern>/OverallSituation.show</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

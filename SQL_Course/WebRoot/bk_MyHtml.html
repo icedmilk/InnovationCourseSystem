@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyHtml.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    <script>
+    	$.ajax({
+									url: "CourseInfo",
+									type: "GET",
+									success: function(resp){
+										$('body').append(resp);
+										$('header').css("background", "rgba(0,0,0,0)");
+										$('.slide').remove();
+										$('table').dataTable();
+
+										
+									}
+								});
+    </script>
+<link rel="stylesheet" href="css/jquery.dataTables.css" type="text/css" />
+  </head>
+  
+  <body>
+    
+  </body>
+</html>

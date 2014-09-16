@@ -11,6 +11,7 @@
 ;( function( window ) {
 	
 	'use strict';
+	
 
 	// http://stackoverflow.com/a/11381730/989439
 	function mobilecheck() {
@@ -37,6 +38,11 @@
 				self._closeMenu();
 				this.removeEventListener( self.eventtype, self.bodyClickFn );
 			};
+			
+//			this.Click = function(){
+//				self._closeMenu();
+//			}
+			
 		},
 		_initEvents : function() {
 			var self = this;
