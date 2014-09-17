@@ -35,8 +35,8 @@ public class common {
 	    String driverName = "com.mysql.jdbc.Driver";
 		String strConn = "jdbc:mysql://localhost:3306/choose_course?useUnicode=true&characterEncoding=utf-8";
 		String dbUserName = "root";
-//		String dbPassword = "";
-		String dbPassword = "root";
+		String dbPassword = "";
+//		String dbPassword = "root";
 		String sql="select * from sc";
 
 		Connection con;
