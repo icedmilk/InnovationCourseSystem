@@ -11,8 +11,8 @@ public class DataBase
 	// private String dbpassword="lc284";
 	private String connStr = "jdbc:mysql://localhost:3306/choose_course?useUnicode=true&characterEncoding=utf-8";
 	private String dbusername = "root";
-	private String dbpassword = "";
-//	private String dbpassword = "root";
+	// public static String dbpassword = "";
+	public static String dbpassword = "root";
 	private Connection conn = null;
 	private Statement stmt = null;
 
@@ -23,9 +23,10 @@ public class DataBase
 			Class.forName(driverStr);
 			conn = DriverManager.getConnection(connStr, dbusername, dbpassword);
 			stmt = conn.createStatement();
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
-			System.out.println("Can not connect to the db"+ex);
+			System.out.println("Can not connect to the db" + ex);
 		}
 	}
 
@@ -44,7 +45,8 @@ public class DataBase
 			rs.next();
 
 			return a - rs.getInt(1);
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,14 +69,15 @@ public class DataBase
 			}
 			int a = Integer.parseInt(period);
 			if (a == 0)
-				period = "period 1";
+				period = "0";
 			else
 				if (a == 1)
-					period = "period 2";
+					period = "1";
 				else
-					period = "period3";
+					period = "2";
 			return period;
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,7 +92,8 @@ public class DataBase
 		try
 		{
 			result = stmt.executeUpdate(s);
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			System.out.println(ex);
 		}
@@ -102,7 +106,8 @@ public class DataBase
 		try
 		{
 			rs = stmt.executeQuery(s);
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			System.out.println(ex);
 		}
@@ -114,7 +119,8 @@ public class DataBase
 		try
 		{
 			stmt.execute(s);
-		} catch (Exception ex)
+		}
+		catch (Exception ex)
 		{
 			System.out.println(ex);
 		}
@@ -126,17 +132,44 @@ public class DataBase
 		{
 			stmt.close();
 			conn.close();
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			System.out.println(e);
 		}
 	}
+
+	public boolean havechosen(String sno, String cno)
+	{
+		String sql = "select count(*) from sc where cno='" + cno
+				+ "' and sno='" + sno + "'";
+		ResultSet rs;
+		try
+		{
+			rs = stmt.executeQuery(sql);
+			rs.next();
+
+			if (rs.getInt(1) == 1)
+				return true;
+			else
+				return false;
+		}
+		catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return false;
+
+	}
+
 	public static void main(String[] args) throws SQLException
 	{
 		DataBase db = new DataBase();
 		ResultSet rs = db.executeQuery("select * from status");
 		rs.next();
 		System.out.print(rs.getInt(2));
-		
+
 	}
 }

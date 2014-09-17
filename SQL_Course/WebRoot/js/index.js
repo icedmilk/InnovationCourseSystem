@@ -63,8 +63,8 @@ $(function()
 	});
 	
 	$('#courseinfo').click(function(){
-		//CourseInfo();
-		OverallSituation();
+		CourseInfo();
+		//OverallSituation();
 		$('body').click();
 	});
 
@@ -143,23 +143,103 @@ $(function()
 		$("header").empty();
 		$("#supersized").remove();
 		
-		$.ajax(
+		$.ajax({
+			url : "CourseInfo",
+			type : "GET",
+			data:{
+				sno: $.cookie("user")
+			},
+			success : function(resp)
+			{
+				$('header').append(resp);
+				$('header').css(
+						"background",
+						"rgba(0,0,0,0)");
+				$('.slide').remove();
+				$('table').dataTable();
+				
+				
+				var $button = $('table button');
+				for(var i = 0; i < $button.length; i++)
 				{
-					url : "CourseInfo",
-					type : "GET",
-					success : function(resp)
+					var buttonStatus = $button.eq(i).text();
+					console.log(buttonStatus);
+					if(buttonStatus == "取消")
+						$button.eq(i).button(
+						{
+							icons:
+							{
+								primary: "ui-icon-closethick"
+							}
+						});
+					else
+						$button.eq(i).button(
+						{
+							icons:
+							{
+								primary: "ui-icon-heart"
+							}
+						});
+					
+				}
+				
+				$('table button').click(function(){
+					var index = $("button").index(this);
+					var remain = $('table tbody tr').eq(index).children('td').eq(4).text();
+					var courseID = $('table tbody tr').eq(index).children('td').eq(0).text();
+					var status = $('#status').text();
+					if(status == "1")
 					{
-						$('header').append(resp);
-						$('header').css(
-								"background",
-								"rgba(0,0,0,0)");
-						$('.slide').remove();
-						$('table').dataTable();
-	
+						$('#rate').dialog("open");
+						$('.btn-primary').click(function(){
+							var str = $('.label-info').text();
+							var arr = [];
+							arr = str.split(" ");
+							
+							$.ajax({
+								url: "ChooseCourse.do",
+								type: "GET",
+								data: {
+									sno: $.cookie('user'),
+									cno: courseID,
+									star: arr[0]
+								},
+								success: function(resp){
+									alert('成功');
+								}
+							});
+						});
+
 					}
+					
+					else
+					{
+						$.ajax({
+							url: "ChooseCourse.do",
+							type: "POST",
+							data: {
+								sno: $.cookie('user'),
+								cno: courseID
+							},
+							success: function(resp){
+								alert('成功');
+							}
+						});
+					}
+
 				});
+			}
+		});
 	}
 	
+	
+	//$('#courseinfo').click();
+	
+	$('#rate').dialog({
+		width : "450px",
+		modal : true,
+		autoOpen : false
+	});
 	
 
 });

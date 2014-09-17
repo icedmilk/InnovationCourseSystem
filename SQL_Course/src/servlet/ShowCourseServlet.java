@@ -3,11 +3,11 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.net.URLDecoder;
+
 import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +16,7 @@ import model.CookieHandler;
 
 import bean.DataBase;
 import bean.common;
-import bean.user;
+
 
 public class ShowCourseServlet extends HttpServlet
 {
@@ -38,6 +38,7 @@ public class ShowCourseServlet extends HttpServlet
 
 		ResultSet rs;
 
+		String sno = request.getParameter("sno");
 //		user loginUser = null;
 		
 //		loginUser = (user) request.getSession().getAttribute("user");
@@ -48,6 +49,7 @@ public class ShowCourseServlet extends HttpServlet
 		try
 		{
 			rs = db.executeQuery(sql);
+			out.print("现在是<div id=\"status\" style=\"font-color:red;\">"+status+"</div>阶段");
 			out.print("<table class=\"display\" id=\"courseinfo\">");
 			out.print("<thead>");
 			out.print("<tr><th>课程编号</th><th>课程名称</th><th>课程类型</th><th>课容量</th><th>课余量</th><th>操作</th></tr>");
@@ -63,16 +65,20 @@ public class ShowCourseServlet extends HttpServlet
 				String course_name = rs.getString("cname");
 				int limit = rs.getInt("cmax");
 				int n = limit - addnum.count();
-
+				DataBase dc = new DataBase();
+				boolean chosen = dc.havechosen(sno, id);
+				
 				out.print("<tr>");
 				out.print("<td>" + id + "</td>");
 				out.print("<td>" + course_name + "</td>");
 				out.print("<td>" + type + "</td>");
 				out.print("<td>" + limit + "</td>");
 				out.print("<td>" + n + "</td>");
-
-
-				out.print("<td><a class=\"choose\" id=\"choose\"onclick=\"aspiration('<%=status %>','<%=id %>','<%=userName %>','<%=limit %>','<%=limit-n %>')\">选课</a></td>");
+				if(chosen)
+					out.print("<td><button>取消</button></td>");
+				else
+					out.print("<td><button>选课</button></td>");
+				//out.print("<td><a class=\"choose\" id=\"choose\"onclick=\"aspiration('<%=status %>','<%=id %>','<%=userName %>','<%=limit %>','<%=limit-n %>')\">选课</a></td>");
 				out.print("</tr>");
 			}
 		}

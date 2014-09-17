@@ -27,10 +27,10 @@ public class ChooseCourse extends HttpServlet
 
 		DataBase db = new DataBase();
 		String sql = "select * from sc";
-		String id = request.getParameter("id");
-		String username = request.getParameter("user");
+		String id = request.getParameter("cno");
+		String username = request.getParameter("sno");
 
-		if (db.status() == "课程发布阶段")
+		if (db.status() == "0")
 		{
 			// <script>
 			// alert("现在是课程发布阶段，需要等到预选阶段才能选课！");
@@ -38,7 +38,7 @@ public class ChooseCourse extends HttpServlet
 			// </script>
 		}
 		else
-			if (db.status() == "预选阶段")
+			if (db.status() == "1")
 			{
 				// 是否填写过该志愿
 				boolean flag = false;
@@ -124,14 +124,14 @@ public class ChooseCourse extends HttpServlet
 				}
 			}
 			else
-				if (db.status() == "正选阶段")
+				if (db.status() == "2")
 				{
-					int limit = new Integer(request.getParameter("limit"))
-							.intValue();
-					int n = new Integer(request.getParameter("x")).intValue();
+//					int limit = new Integer(request.getParameter("limit"))
+//							.intValue();
+//					int n = new Integer(request.getParameter("x")).intValue();
 
-					if (n < limit)
-					{
+//					if (n < limit)
+//					{
 
 						String sql1 = "select count(*) from sc where sno='"
 								+ username + "' and cno='" + id + "'";// 选XX课的数量
@@ -152,9 +152,8 @@ public class ChooseCourse extends HttpServlet
 									sql = "insert into sc(sno,cno) values('"
 											+ username + "','" + id + "') ";
 									db.executeUpdate(sql);
-
-									response.setHeader("refresh",
-											"0;url=choosecourse.jsp ");
+									
+									out.print("success");
 
 								}
 								else
@@ -174,16 +173,16 @@ public class ChooseCourse extends HttpServlet
 							e.printStackTrace();
 
 						}
-					}
-					else
-					{
-						// %>
-						// <script language="javascript">
-						// alert("此课程人数已满！");
-						// window.location.href="choosecourse.jsp";
-						// </script>
-						// <%
-					}
+//					}
+//					else
+//					{
+//						// %>
+//						// <script language="javascript">
+//						// alert("此课程人数已满！");
+//						// window.location.href="choosecourse.jsp";
+//						// </script>
+//						// <%
+//					}
 				}
 
 		out.flush();
