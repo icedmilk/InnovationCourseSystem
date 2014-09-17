@@ -29,9 +29,26 @@
     <servlet-name>OverallSituation</servlet-name>
     <servlet-class>servlet.OverallSituation</servlet-class>
   </servlet>
-
-
-
+  <servlet>
+    <servlet-name>ChooseCourse</servlet-name>
+    <servlet-class>servlet.ChooseCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AddCourse</servlet-name>
+    <servlet-class>servlet.AddCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteCourse</servlet-name>
+    <servlet-class>servlet.DeleteCourse</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CancelChoose</servlet-name>
+    <servlet-class>servlet.CancelChoose</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>CoreAlgorithm</servlet-name>
+    <servlet-class>servlet.CoreAlgorithm</servlet-class>
+  </servlet>
 
 
 
@@ -58,6 +75,26 @@
   <servlet-mapping>
     <servlet-name>OverallSituation</servlet-name>
     <url-pattern>/OverallSituation.show</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChooseCourse</servlet-name>
+    <url-pattern>/ChooseCourse.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddCourse</servlet-name>
+    <url-pattern>/AddCourse.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteCourse</servlet-name>
+    <url-pattern>/DeleteCourse.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CancelChoose</servlet-name>
+    <url-pattern>/CancelChoose.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CoreAlgorithm</servlet-name>
+    <url-pattern>/CoreAlgorithm.do</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

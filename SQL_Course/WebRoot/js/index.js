@@ -63,10 +63,32 @@ $(function()
 	});
 	
 	$('#courseinfo').click(function(){
-		CourseInfo();
-
+		//CourseInfo();
+		OverallSituation();
 		$('body').click();
 	});
+
+	function OverallSituation(){
+		$("header").empty();
+		$("#supersized").remove();
+		
+		$.ajax(
+				{
+					url : "OverallSituation.show",
+					type : "GET",
+					
+					success : function(resp)
+					{
+						$('header').append(resp);
+						$('header').css(
+								"background",
+								"rgba(0,0,0,0)").css("color", "#000");
+						$('.slide').remove();
+						$('table').dataTable();
+
+					}
+				});
+	}
 	
 	function MessageBox(){
 		$("header").empty();
