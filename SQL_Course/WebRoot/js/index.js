@@ -128,7 +128,7 @@ $(function()
 				$('header').append(resp);
 				$('header').css(
 						"background",
-						"rgba(0,0,0,0)");
+						"rgba(0,0,0,0)").css("color", "#000");
 				$('.slide').remove();
 				$('table').dataTable();
 
@@ -153,24 +153,26 @@ $(function()
 				$('header').append(resp);
 				$('header').css(
 						"background",
-						"rgba(0,0,0,0)");
+						"rgba(0,0,0,0)").css("color", "#000");
 				$('.slide').remove();
-				$('table').dataTable();
+				//$('table').dataTable();
 				
+				
+				var status = $('#status').text();//get status
+				if(status == "课程发布阶段")
+				{
+					$('table button').attr('disabled',"true");
+				}
 				
 				var $button = $('table button');
+				//console($button.length);
 				for(var i = 0; i < $button.length; i++)
 				{
+					if(status == "课程发布阶段")
+						$button.eq(i).text('此阶段不能操作');
 					var buttonStatus = $button.eq(i).text();
-					if(buttonStatus == "取消")
-						$button.eq(i).button(
-						{
-							icons:
-							{
-								primary: "ui-icon-closethick"
-							}
-						});
-					else
+					
+					if(buttonStatus == "选课")
 						$button.eq(i).button(
 						{
 							icons:
@@ -178,15 +180,24 @@ $(function()
 								primary: "ui-icon-heart"
 							}
 						});
+					else
+						$button.eq(i).button(
+						{
+							icons:
+							{
+								primary: "ui-icon-closethick"
+							}
+						});
 					
 				}
 				
+
 				//选课/取消
 				$('table button').click(function(){
 					var index = $("button").index(this);
 					var courseID = $('table tbody tr').eq(index).children('td').eq(0).text();
 					var operation = $('table tbody tr').eq(index).children('td').eq(5).children('button').children('span').eq(1).text();
-					var status = $('#status').text();//get status
+					
 					if(operation == "取消")
 					{
 						$.ajax({
@@ -210,8 +221,7 @@ $(function()
 							}
 						});
 					}
-					else
-					if(status == "1")//pre choose
+					else if(status == "预选阶段")//pre choose
 					{
 						$('#rate').dialog("open");
 						$('.btn-primary').click(function(){
@@ -274,7 +284,9 @@ $(function()
 					}//else
 
 				});//click
+				$('table').dataTable();
 			}//ajax success
+			
 		});
 	}//CourseInfo
 	
@@ -302,15 +314,15 @@ $(function()
 	
 	$('label[for=yuxuan]').click(function(){
 		
-		column.css('display', 'block');
+		column.css('display', 'none');
 	});
 	
 	$('label[for=zhengxuan]').click(function(){
 		column.css('display', 'none');
 	});
 	
-	$('#fabu').click(function(){
-		column.css('display', 'none');
+	$('label[for=fabu]').click(function(){
+		column.css('display', 'block');
 	});
 	
 	
@@ -322,5 +334,39 @@ $(function()
 		}
 	});
 	
+	$('#changestat').click(function(){
+		$.ajax({
+			url: 'GetStatus.show',
+			type: 'POST',
+			success: function(resp){
+				$('#statusNow').text(resp);
+			}
+		});
+		
+		$('#ChangeStatus').dialog('open');
+		$('body').click();
+	});
 	
+	
+	$('#submitChange').click(function(){
+		event.preventDefault();
+		//console.log($('#language').val());
+		var chooseStatus = $('#ChangeStatus .ui-state-active').children('span').text();
+		$.ajax({
+			url: "CoreAlgorithm.do",
+			data: {
+				status: chooseStatus,
+				science: $('#science').val(),
+				language: $('#language').val(),
+				art: $('#art').val(),
+				management: $('#management').val(),
+				economy: $('#economy').val()
+			},
+			type: "POST",
+			success: function(){
+				$('#ChangeStatus').dialog('close');
+//				alert('成功');
+			}
+		});
+	});
 });

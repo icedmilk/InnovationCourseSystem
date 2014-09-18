@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,16 +29,9 @@ public class ChooseCourse extends HttpServlet
 		String id = request.getParameter("cno");
 		String username = request.getParameter("sno");
 
-		if (db.status() == "0")
+
+		if (db.status() == "预选阶段")
 		{
-			// <script>
-			// alert("现在是课程发布阶段，需要等到预选阶段才能选课！");
-			// window.location.href="choosecourse.jsp";
-			// </script>
-		}
-		else
-			if (db.status() == "1")
-			{
 //				// 是否填写过该志愿
 //				boolean flag = false;
 //				String sqlAsp = "select cstatus from sc where sno='" + username
@@ -76,56 +68,31 @@ public class ChooseCourse extends HttpServlet
 //				}
 //				else
 //				{
-					String sql1 = "select count(*) from sc where sno='"
-							+ username + "' and cno='" + id + "'";// 选XX课的数量
-					try
-					{
-						ResultSet rs;
-						rs = db.executeQuery(sql1);
 
-						if (rs.next())
-						{
-							if (rs.getInt(1) == 0)// 若没选课
-							{
-								// %>
-								// <script>
-								// alert("选课成功");
-								// </script>
-								// <%
-								sql = "insert into sc(sno,cno,cstatus) values('"
-										+ username
-										+ "','"
-										+ id
-										+ "','"
-										+ request.getParameter("star") + "')";
-								db.executeUpdate(sql);
+				try
+				{
+					sql = "insert into sc(sno,cno,cstatus) values('"
+							+ username
+							+ "','"
+							+ id
+							+ "','"
+							+ request.getParameter("star") + "')";
+					db.executeUpdate(sql);
 
 //								response.setHeader("refresh",
 //										"0;url=choosecourse.jsp ");
 
-							}
-							else
-							{
-								// %>
-								// <script>
-								// alert("你已经选过此课程");
-								// window.location.href="choosecourse.jsp";
-								// </script>
-								// <%
-
-							}
-						}
-					}
-					catch (Exception e)
-					{
-						e.printStackTrace();
-
-					}
-				//}
-			}
-			else
-				if (db.status() == "2")
+				}
+				catch (Exception e)
 				{
+					e.printStackTrace();
+
+				}
+			//}
+		}
+		else
+			if (db.status() == "正选阶段")
+			{
 //					int limit = new Integer(request.getParameter("limit"))
 //							.intValue();
 //					int n = new Integer(request.getParameter("x")).intValue();
@@ -133,46 +100,20 @@ public class ChooseCourse extends HttpServlet
 //					if (n < limit)
 //					{
 
-						String sql1 = "select count(*) from sc where sno='"
-								+ username + "' and cno='" + id + "'";// 选XX课的数量
-						try
-						{
-							ResultSet rs;
-							rs = db.executeQuery(sql1);
+					try
+					{
+						sql = "insert into sc(sno,cno) values('"
+								+ username + "','" + id + "') ";
+						db.executeUpdate(sql);
 
-							if (rs.next())
-							{
-								if (rs.getInt(1) == 0)// 若没选课
-								{
-									// %>
-									// <script language="javascript">
-									// alert("选课成功");
-									// </script>
-									// <%
-									sql = "insert into sc(sno,cno) values('"
-											+ username + "','" + id + "') ";
-									db.executeUpdate(sql);
-									
-									out.print("success");
+						out.print("success");
 
-								}
-								else
-								{
-									// %>
-									// <script>
-									// alert("你已经选过此课程");
-									// window.location.href="choosecourse.jsp";
-									// </script>
-									// <%
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
 
-								}
-							}
-						}
-						catch (Exception e)
-						{
-							e.printStackTrace();
-
-						}
+					}
 //					}
 //					else
 //					{
@@ -183,7 +124,7 @@ public class ChooseCourse extends HttpServlet
 //						// </script>
 //						// <%
 //					}
-				}
+			}
 
 		out.flush();
 		out.close();

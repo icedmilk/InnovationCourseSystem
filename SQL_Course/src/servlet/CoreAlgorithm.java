@@ -31,9 +31,9 @@ public class CoreAlgorithm extends HttpServlet
 
 		String sql = "update status set period=";
 		String sql2 = null;
-		ResultSet rs;
+		request.setCharacterEncoding("utf-8");
 		String status = request.getParameter("status");
-		if (status.equals("fabu"))
+		if (status.equals("课程发布阶段"))
 		{
 			sql += "'0'";
 			sql += ",science='" + request.getParameter("science")
@@ -44,7 +44,7 @@ public class CoreAlgorithm extends HttpServlet
 			sql2 = new String("update student set sinfo=null");
 		}
 		else
-			if (status.equals("yuxuan"))
+			if (status.equals("预选阶段"))
 			{
 				sql += "'1'";
 				sql2 = new String("update student set sinfo=null");
@@ -53,7 +53,7 @@ public class CoreAlgorithm extends HttpServlet
 			}
 
 			else
-				if (status.equals("zhengxuan"))
+				if (status.equals("正选阶段"))
 				{
 					/* 预存Cno */
 
@@ -220,7 +220,7 @@ public class CoreAlgorithm extends HttpServlet
 				}
 
 		// sql+=" where science = 5";
-		System.out.print(sql);
+		System.out.println(sql);
 		db.executeUpdate(sql);
 		if (sql2 != null)
 			db.executeUpdate(sql2);

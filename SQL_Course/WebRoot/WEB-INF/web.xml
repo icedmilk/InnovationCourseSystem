@@ -49,6 +49,11 @@
     <servlet-name>CoreAlgorithm</servlet-name>
     <servlet-class>servlet.CoreAlgorithm</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>GetStatus</servlet-name>
+    <servlet-class>servlet.GetStatus</servlet-class>
+  </servlet>
+
 
 
 
@@ -95,6 +100,10 @@
   <servlet-mapping>
     <servlet-name>CoreAlgorithm</servlet-name>
     <url-pattern>/CoreAlgorithm.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetStatus</servlet-name>
+    <url-pattern>/GetStatus.show</url-pattern>
   </servlet-mapping>	
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

@@ -5,4 +5,8 @@ Remain:
 4. ChangeStatus 发布状态 form			1
 5. delCourse 删课 servlet DeleteCourse  -
 6. delete 删除选课 servlet CancelChoose  1
-7. DoChange 选课算法 servlet CoreAlgorithm  ?
+7. DoChange 选课算法 servlet CoreAlgorithm  1
+
+
+
+just start chart !

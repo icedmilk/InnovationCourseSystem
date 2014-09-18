@@ -11,8 +11,8 @@ public class DataBase
 	// private String dbpassword="lc284";
 	private String connStr = "jdbc:mysql://localhost:3306/choose_course?useUnicode=true&characterEncoding=utf-8";
 	private String dbusername = "root";
-	 public static String dbpassword = "";
-//	public static String dbpassword = "root";
+//	public static String dbpassword = "";
+	public static String dbpassword = "root";
 	private Connection conn = null;
 	private Statement stmt = null;
 
@@ -48,7 +48,7 @@ public class DataBase
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			return -1;
 		}
@@ -69,17 +69,17 @@ public class DataBase
 			}
 			int a = Integer.parseInt(period);
 			if (a == 0)
-				period = "0";
+				period = "课程发布阶段";
 			else
 				if (a == 1)
-					period = "1";
+					period = "预选阶段";
 				else
-					period = "2";
+					period = "正选阶段";
 			return period;
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			return null;
 		}
@@ -156,7 +156,7 @@ public class DataBase
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 
 		}
