@@ -40,42 +40,42 @@ public class ChooseCourse extends HttpServlet
 		else
 			if (db.status() == "1")
 			{
-				// 是否填写过该志愿
-				boolean flag = false;
-				String sqlAsp = "select cstatus from sc where sno='" + username
-						+ "'";
-
-				ResultSet rsSqlAsp;
-				try
-				{
-					rsSqlAsp = db.executeQuery(sqlAsp);
-					while (rsSqlAsp.next())
-					{
-
-						if (Integer.parseInt(request.getParameter("asp")) == rsSqlAsp
-								.getInt(1))
-						{
-							flag = true;
-						}
-					}
-				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-
-				}
-
-				if (flag)
-				{
-					// %>
-					// <script>
-					// alert("你已经有过第"+<%=request.getParameter("asp")%>+"志愿的课程");
-					// window.location.href="choosecourse.jsp";
-					// </script>
-					// <%
-				}
-				else
-				{
+//				// 是否填写过该志愿
+//				boolean flag = false;
+//				String sqlAsp = "select cstatus from sc where sno='" + username
+//						+ "'";
+//
+//				ResultSet rsSqlAsp;
+//				try
+//				{
+//					rsSqlAsp = db.executeQuery(sqlAsp);
+//					while (rsSqlAsp.next())
+//					{
+//
+//						if (Integer.parseInt(request.getParameter("star")) == rsSqlAsp
+//								.getInt(1))
+//						{
+//							flag = true;
+//						}
+//					}
+//				}
+//				catch (Exception e)
+//				{
+//					e.printStackTrace();
+//
+//				}
+//
+//				if (flag)
+//				{
+//					// %>
+//					// <script>
+//					// alert("你已经有过第"+<%=request.getParameter("asp")%>+"志愿的课程");
+//					// window.location.href="choosecourse.jsp";
+//					// </script>
+//					// <%
+//				}
+//				else
+//				{
 					String sql1 = "select count(*) from sc where sno='"
 							+ username + "' and cno='" + id + "'";// 选XX课的数量
 					try
@@ -97,11 +97,11 @@ public class ChooseCourse extends HttpServlet
 										+ "','"
 										+ id
 										+ "','"
-										+ request.getParameter("asp") + "')";
+										+ request.getParameter("star") + "')";
 								db.executeUpdate(sql);
 
-								response.setHeader("refresh",
-										"0;url=choosecourse.jsp ");
+//								response.setHeader("refresh",
+//										"0;url=choosecourse.jsp ");
 
 							}
 							else
@@ -121,7 +121,7 @@ public class ChooseCourse extends HttpServlet
 						e.printStackTrace();
 
 					}
-				}
+				//}
 			}
 			else
 				if (db.status() == "2")

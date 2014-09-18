@@ -50,7 +50,6 @@ public class WhatIChoose extends HttpServlet
 		out.print("<th>课容量</th>");
 		if (db.status() == "预选阶段")
 			out.print("<th>志愿等级</th>");
-		out.print("<th>操作</th>");
 
 		out.print("</tr></thead>");
 		try
@@ -83,7 +82,6 @@ public class WhatIChoose extends HttpServlet
 				if (status == "预选阶段")
 					out.print("<td>" + vcourse.getAsp() + "</td>");
 
-				out.print("<td><a href=\"delete.jsp?id=<%=vcourse.getCourseId() %>&user=<%=sUsername %>\" onClick=\"delcfm()\">退课</a></td>");
 
 				out.print("</tr>");
 			}

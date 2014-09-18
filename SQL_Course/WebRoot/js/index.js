@@ -72,72 +72,71 @@ $(function()
 		$("header").empty();
 		$("#supersized").remove();
 		
-		$.ajax(
-				{
-					url : "OverallSituation.show",
-					type : "GET",
-					
-					success : function(resp)
-					{
-						$('header').append(resp);
-						$('header').css(
-								"background",
-								"rgba(0,0,0,0)").css("color", "#000");
-						$('.slide').remove();
-						$('table').dataTable();
+		$.ajax({
+			url : "OverallSituation.show",
+			type : "GET",
+			
+			success : function(resp)
+			{
+				$('header').append(resp);
+				$('header').css(
+						"background",
+						"rgba(0,0,0,0)").css("color", "#000");
+				$('.slide').remove();
+				$('table').dataTable();
 
-					}
-				});
+			}
+		});
 	}
 	
 	function MessageBox(){
 		$("header").empty();
 		$("#supersized").remove();
 		
-		$.ajax(
-				{
-					url : "MessageBox.show",
-					type : "GET",
-					data :
-					{
-						user: $.cookie('user')
-					}, 
-					success : function(resp)
-					{
-						$('header').append(resp);
-						$('header').css(
-								"background",
-								"rgba(0,0,0,0)").css("color", "#000");
-						$('.slide').remove();
+		$.ajax({
+			url : "MessageBox.show",
+			type : "GET",
+			data :
+			{
+				user: $.cookie('user')
+			}, 
+			success : function(resp)
+			{
+				$('header').append(resp);
+				$('header').css(
+						"background",
+						"rgba(0,0,0,0)").css("color", "#000");
+				$('.slide').remove();
 
-					}
-				});
+			}
+		});
 	}
 	
 	function ChosenCourse(){
 		$("header").empty();
 		$("#supersized").remove();
 		
-		$.ajax(
-				{
-					url : "ChosenCourse.show",
-					type : "GET",
-					data :
-					{
-						user: $.cookie('user')
-					}, 
-					success : function(resp)
-					{
-						$('header').append(resp);
-						$('header').css(
-								"background",
-								"rgba(0,0,0,0)");
-						$('.slide').remove();
-						$('table').dataTable();
-	
-					}
-				});
+		$.ajax({
+			url : "ChosenCourse.show",
+			type : "GET",
+			data :
+			{
+				user: $.cookie('user')
+			}, 
+			success : function(resp)
+			{
+				$('header').append(resp);
+				$('header').css(
+						"background",
+						"rgba(0,0,0,0)");
+				$('.slide').remove();
+				$('table').dataTable();
+
+			}
+		});
 	}
+	
+	
 	
 	function CourseInfo(){
 		$("header").empty();
@@ -163,7 +162,6 @@ $(function()
 				for(var i = 0; i < $button.length; i++)
 				{
 					var buttonStatus = $button.eq(i).text();
-					console.log(buttonStatus);
 					if(buttonStatus == "取消")
 						$button.eq(i).button(
 						{
@@ -183,16 +181,41 @@ $(function()
 					
 				}
 				
+				//选课/取消
 				$('table button').click(function(){
 					var index = $("button").index(this);
-					var remain = $('table tbody tr').eq(index).children('td').eq(4).text();
 					var courseID = $('table tbody tr').eq(index).children('td').eq(0).text();
-					var status = $('#status').text();
-					if(status == "1")
+					var operation = $('table tbody tr').eq(index).children('td').eq(5).children('button').children('span').eq(1).text();
+					var status = $('#status').text();//get status
+					if(operation == "取消")
+					{
+						$.ajax({
+							url: "CancelChoose.do",
+							type: "POST",
+							data: {
+								sno: $.cookie('user'),
+								cno: courseID
+							},
+							success: function(resp){
+								var $clickButton = $('table tbody tr').eq(index).children('td').eq(5).children('button');
+								$clickButton.empty().removeAttr();
+								$clickButton.button({
+									icons:
+									{
+										primary: "ui-icon-heart"
+									}
+								});
+								$clickButton.children('span').eq(1).text('选课');
+//								alert('成功');
+							}
+						});
+					}
+					else
+					if(status == "1")//pre choose
 					{
 						$('#rate').dialog("open");
 						$('.btn-primary').click(function(){
-							var str = $('.label-info').text();
+							var str = $('.caption span').text();
 							var arr = [];
 							arr = str.split(" ");
 							
@@ -205,7 +228,19 @@ $(function()
 									star: arr[0]
 								},
 								success: function(resp){
-									alert('成功');
+									var $clickButton = $('table tbody tr').eq(index).children('td').eq(5).children('button');
+									$clickButton.empty().removeAttr();
+									$clickButton.button({
+										icons:
+										{
+											primary: "ui-icon-closethick"
+										}
+									});
+									$clickButton.children('span').eq(1).text('取消');
+									$('#rate').dialog("close");
+									//alert('成功');
+									$('.btn-primary').unbind();
+									
 								}
 							});
 						});
@@ -222,15 +257,28 @@ $(function()
 								cno: courseID
 							},
 							success: function(resp){
-								alert('成功');
+								var $clickButton = $('table tbody tr').eq(index).children('td').eq(5).children('button');
+								$clickButton.empty().removeAttr();
+								$clickButton.button({
+									icons:
+									{
+										primary: "ui-icon-closethick"
+									}
+								});
+								$clickButton.children('span').eq(1).text('取消');
+								
+								$('#rate').dialog("close");
+								//alert('成功');
 							}
 						});
-					}
+					}//else
 
-				});
-			}
+				});//click
+			}//ajax success
 		});
-	}
+	}//CourseInfo
+	
+	
 	
 	
 	//$('#courseinfo').click();
@@ -241,5 +289,38 @@ $(function()
 		autoOpen : false
 	});
 	
-
+	
+	
+	$('#ChangeStatus').dialog({
+		width : "370px",
+		modal : true,
+		autoOpen : false
+	});
+	
+	$('#ChangeStatus').buttonset();
+    var column=$('#tr1');
+	
+	$('label[for=yuxuan]').click(function(){
+		
+		column.css('display', 'block');
+	});
+	
+	$('label[for=zhengxuan]').click(function(){
+		column.css('display', 'none');
+	});
+	
+	$('#fabu').click(function(){
+		column.css('display', 'none');
+	});
+	
+	
+	$('#ChangeStatus input[type=submit]').click(function(){
+		var checkStatus = $('#ChangeStatus input:radio[value="zhengxuan"]:checked').val();
+		if(checkStatus != null)
+		{
+			return confirm("正选阶段将进行选课志愿算法的分配，不能回退，确定继续吗？");
+		}
+	});
+	
+	
 });

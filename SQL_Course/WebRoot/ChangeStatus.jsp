@@ -25,16 +25,6 @@ $(function(){
 		column.css('display', 'none');
 	});
 	
-	/* function confirm2()
-	{
-		if(document.getElementById("zhengxuan2").checked){
-			if (window.confirm("正选阶段将进行选课志愿算法的分配，不能回退，确定继续吗？"))
-				return true;
-			else
-			return false;
-		}
-		return true;
-	} */
 	
 	$('input[type=submit]').click(function(){
 		var checkStatus = $('input:radio[value="zhengxuan"]:checked').val();

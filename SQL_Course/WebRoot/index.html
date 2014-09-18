@@ -289,6 +289,52 @@ ul#demo-block li a {
 		</p>
 	</form>
 
+
+
+
+	<form id="ChangeStatus" title="更改选课阶段">
+
+		    <center>现在是 <strong><%=db.status() %></strong><br /><br />(课程发布阶段 → 预选阶段 → 正选阶段)</center>
+	<p>
+		<input type="radio" name="status" value="fabu" id="fabu"/><label for="fabu">课程发布阶段</label>
+		<input type="radio" name="status" value="yuxuan" checked="checked" id="yuxuan"/><label for="yuxuan">预选阶段</label>
+		<input type="radio" name="status" value="zhengxuan" id="zhengxuan"/><label for="zhengxuan">正选阶段</label>
+	</p>
+	    <div id="tr1">
+			<table>
+			<tr>
+			    <td>计算科学类：(门)</td>
+			    <td><input type="text" name="science" size="10"></td>
+			</tr>
+			<tr>
+			    <td>语言类：(门)</td>
+			    <td><input type="text" name="language" size="10"></td>
+			</tr>
+			<tr>
+			    <td>人文艺术类：(门)</td>
+			    <td><input type="text" name="art" size="10"></td>
+			</tr>
+			<tr>
+			    <td>管理类：(门)</td>
+			    <td><input type="text" name="management" size="10"></td>
+			</tr>
+			<tr>
+			    <td>经济类：(门)</td>
+			    <td><input type="text" name="economy" size="10"></td>
+			</tr>
+			</table>
+	
+		</div>
+
+	
+		<center><input type="submit" value="提交">
+		<input type="reset" value="重置">
+		</center>
+	</form>
+
+
+
+
 	<div id="loading">loading</div>
 
 	<div class="container" id="rate">

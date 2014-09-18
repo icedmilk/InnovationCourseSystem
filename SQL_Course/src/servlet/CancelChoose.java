@@ -29,8 +29,8 @@ public class CancelChoose extends HttpServlet
 		DataBase db = new DataBase();
 
 		String sql = "select * from sc";
-		String delUser = request.getParameter("user");
-		String delId = request.getParameter("id");
+		String delUser = request.getParameter("sno");
+		String delId = request.getParameter("cno");
 		sql = "delete from sc where sno = '" + delUser + "' and cno='" + delId
 				+ "' ";
 
@@ -44,7 +44,7 @@ public class CancelChoose extends HttpServlet
 			e.printStackTrace();
 		}
 
-		response.sendRedirect("view.jsp?user=" + delUser + "");
+		//response.sendRedirect("view.jsp?user=" + delUser + "");
 
 		out.flush();
 		out.close();
