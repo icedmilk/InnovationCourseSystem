@@ -11,8 +11,8 @@ public class DataBase
 	// private String dbpassword="lc284";
 	private String connStr = "jdbc:mysql://localhost:3306/choose_course?useUnicode=true&characterEncoding=utf-8";
 	private String dbusername = "root";
-//	public static String dbpassword = "";
-	public static String dbpassword = "root";
+	public static String dbpassword = "";
+//	public static String dbpassword = "root";
 	private Connection conn = null;
 	private Statement stmt = null;
 

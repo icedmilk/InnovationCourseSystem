@@ -53,7 +53,16 @@ $(function()
 /*mv to login.js*/
 	
 	$('#messagebox').click(function(){
-		MessageBox();
+		//MessageBox();
+		OverallSituation();
+		$.ajax({
+			url: 'pivot.html',
+			success: function(resp){
+				$('header').append('<iframe src="pivot.html" frameborder="0" scrolling="no" width="100%" height="700"></iframe>');
+			}
+		});
+//		$('header').append("<div id='output'></div>")
+
 		$('body').click();
 	});
 	
@@ -83,7 +92,7 @@ $(function()
 						"background",
 						"rgba(0,0,0,0)").css("color", "#000");
 				$('.slide').remove();
-				$('table').dataTable();
+				//$('table').dataTable();
 
 			}
 		});

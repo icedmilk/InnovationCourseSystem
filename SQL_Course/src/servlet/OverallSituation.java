@@ -44,7 +44,7 @@ public class OverallSituation extends HttpServlet
 //			realName = loginUser.getRealname();
 //		}
 
-		out.print("<table class=\"display\">");
+		out.print("<table class=\"display\" id=\"overallsituation\" style=\"display:none;\">");
 
 		out.print("<thead><tr>");
 		out.print("<th>学号</th>");
