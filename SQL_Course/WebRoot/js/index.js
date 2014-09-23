@@ -375,6 +375,7 @@ $(function()
 			success: function(){
 				$('#ChangeStatus').dialog('close');
 //				alert('成功');
+				
 			}
 		});
 	});
