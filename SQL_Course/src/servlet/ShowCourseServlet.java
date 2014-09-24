@@ -49,7 +49,7 @@ public class ShowCourseServlet extends HttpServlet
 		try
 		{
 			rs = db.executeQuery(sql);
-			out.print("现在是<div id=\"status\" style=\"font-color:red;\">"+status+"</div>阶段");
+			out.print("<div id=\"stat\">现在是<strong id=\"status\" style=\"font-color:red;\">"+status+"</strong>阶段</div>");
 			out.print("<table class=\"display\" id=\"courseinfo\">");
 			out.print("<thead>");
 			out.print("<tr><th>课程编号</th><th>课程名称</th><th>课程类型</th><th>课容量</th><th>课余量</th><th>操作</th></tr>");
@@ -93,7 +93,7 @@ public class ShowCourseServlet extends HttpServlet
 
 		out.print("</table>");
 		
-		out.print(CookieHandler.getValue(request, "user"));
+		//out.print(CookieHandler.getValue(request, "user"));
 		
 		
 		out.flush();

@@ -42,15 +42,22 @@ $(function(){
 		{
 			$('body').append(resp);
 			//$('table').dataTable();
-		    $("#output").pivotUI(html2json('overallsituation'), {
+			var jsonObj = html2json('overallsituation');
+			var key = [];
+			for (var j in jsonObj[0])
+			{
+				key.push(j);
+				
+			}
+		    $("#output").pivotUI(jsonObj, {
 		        renderers: $.extend(
 		            $.pivotUtilities.renderers, 
 		            $.pivotUtilities.gchart_renderers, 
 		            $.pivotUtilities.d3_renderers
 		            ),
-		        cols: ["学号"], rows: ["姓名"],
+		        cols: [key[0], key[1]], rows: [key[2], key[3], key[4]],
 		        //cols: ["Count"], rows: ["System"],
-		        rendererName: "Table"
+		        rendererName: "Bar Chart"
 		    });
 
 		}
