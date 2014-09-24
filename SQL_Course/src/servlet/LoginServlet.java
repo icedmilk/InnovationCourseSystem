@@ -8,10 +8,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.DataBase;
-import bean.user;
+
 
 public class LoginServlet extends HttpServlet
 {
@@ -42,20 +41,11 @@ public class LoginServlet extends HttpServlet
 
 		DataBase db = new DataBase();
 
-		HttpSession session = request.getSession();
 
 		if (sno.equals("admin") && password.equals("admin"))
 		{
-
-			user admin = new user();
-
-			admin.setUsername("admin");
-			admin.setRealname("admin");
-
-			session.setAttribute("user", admin);
-			
+			out.print("true");
 			return;
-			// response.sendRedirect("situation.jsp");
 		}
 
 		try
@@ -63,16 +53,7 @@ public class LoginServlet extends HttpServlet
 			rs = db.executeQuery(sql);
 			if (rs.next())
 			{
-				user loginUser = new user();
-				loginUser.setUsername(rs.getString("Sno"));
-				loginUser.setPassword(rs.getString("Spwd"));
-				loginUser.setRealname(rs.getString("Sname"));
-
-				session.setAttribute("user", loginUser);
 				out.print("true");
-				
-				// response.sendRedirect("choosecourse.jsp");
-
 			}
 			else
 			{

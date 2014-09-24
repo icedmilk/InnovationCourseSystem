@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.DataBase;
-import bean.common;
-import bean.course;
 
 public class WhatIChoose extends HttpServlet
 {
@@ -33,7 +31,7 @@ public class WhatIChoose extends HttpServlet
 		String sql = "select * from sc";
 		ResultSet rs;
 
-		//int i = 0;
+		// int i = 0;
 
 		String sUsername = request.getParameter("user");
 		sql = "select distinct course.*,sc.cstatus from course, sc "
@@ -59,29 +57,20 @@ public class WhatIChoose extends HttpServlet
 
 			while (rs.next())
 			{
-				common addnum = new common();
-				course vcourse = new course();
 
-				vcourse.setCourseId(rs.getString("cno"));
-				addnum.setCourseid(vcourse.getCourseId());
-				vcourse.setCourseName(rs.getString("cname"));
-				vcourse.setLimited(rs.getInt("cmax"));
-				vcourse.setCtype(rs.getString("ctype"));
+				int limited = rs.getInt("cmax");
 
-				vcourse.setAsp(rs.getInt("cstatus"));
-
-				int n = vcourse.getLimited() - addnum.count();
+				int n = limited - db.getCount(rs.getString("cno"));
 
 				out.print("<tr>");
-				out.print("<td>" + vcourse.getCourseId() + "</td>");
-				out.print("<td>" + vcourse.getCourseName() + "</td>");
-				out.print("<td>" + vcourse.getCtype() + "</td>");
+				out.print("<td>" + rs.getString("cno") + "</td>");
+				out.print("<td>" + rs.getString("cname") + "</td>");
+				out.print("<td>" + rs.getString("ctype") + "</td>");
 				out.print("<td>" + n + "</td>");
-				out.print("<td>" + vcourse.getLimited() + "</td>");
+				out.print("<td>" + limited + "</td>");
 
 				if (status == "预选阶段")
-					out.print("<td>" + vcourse.getAsp() + "</td>");
-
+					out.print("<td>" + rs.getInt("cstatus") + "</td>");
 
 				out.print("</tr>");
 			}

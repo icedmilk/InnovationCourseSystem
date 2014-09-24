@@ -11,8 +11,8 @@ public class DataBase
 	// private String dbpassword="lc284";
 	private String connStr = "jdbc:mysql://localhost:3306/choose_course?useUnicode=true&characterEncoding=utf-8";
 	private String dbusername = "root";
-	public static String dbpassword = "";
-//	public static String dbpassword = "root";
+	// public static String dbpassword = "";
+	public static String dbpassword = "root";
 	private Connection conn = null;
 	private Statement stmt = null;
 
@@ -162,6 +162,31 @@ public class DataBase
 		}
 		return false;
 
+	}
+
+	public int getCount(String courseid)
+	{
+		DataBase db = new DataBase();
+		String sql = "select count(distinct sno)  from sc where cno='"
+				+ courseid + "' and cstatus>=0";
+
+		int amount = 0;
+
+		try
+		{
+
+			ResultSet rs = db.executeQuery(sql);
+
+			while (rs.next())
+			{
+				amount = rs.getInt(1);
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return amount;
 	}
 
 	public static void main(String[] args) throws SQLException

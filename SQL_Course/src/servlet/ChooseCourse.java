@@ -32,42 +32,6 @@ public class ChooseCourse extends HttpServlet
 
 		if (db.status() == "预选阶段")
 		{
-//				// 是否填写过该志愿
-//				boolean flag = false;
-//				String sqlAsp = "select cstatus from sc where sno='" + username
-//						+ "'";
-//
-//				ResultSet rsSqlAsp;
-//				try
-//				{
-//					rsSqlAsp = db.executeQuery(sqlAsp);
-//					while (rsSqlAsp.next())
-//					{
-//
-//						if (Integer.parseInt(request.getParameter("star")) == rsSqlAsp
-//								.getInt(1))
-//						{
-//							flag = true;
-//						}
-//					}
-//				}
-//				catch (Exception e)
-//				{
-//					e.printStackTrace();
-//
-//				}
-//
-//				if (flag)
-//				{
-//					// %>
-//					// <script>
-//					// alert("你已经有过第"+<%=request.getParameter("asp")%>+"志愿的课程");
-//					// window.location.href="choosecourse.jsp";
-//					// </script>
-//					// <%
-//				}
-//				else
-//				{
 
 				try
 				{
@@ -79,8 +43,6 @@ public class ChooseCourse extends HttpServlet
 							+ request.getParameter("star") + "')";
 					db.executeUpdate(sql);
 
-//								response.setHeader("refresh",
-//										"0;url=choosecourse.jsp ");
 
 				}
 				catch (Exception e)
@@ -88,17 +50,10 @@ public class ChooseCourse extends HttpServlet
 					e.printStackTrace();
 
 				}
-			//}
 		}
 		else
 			if (db.status() == "正选阶段")
 			{
-//					int limit = new Integer(request.getParameter("limit"))
-//							.intValue();
-//					int n = new Integer(request.getParameter("x")).intValue();
-
-//					if (n < limit)
-//					{
 
 					try
 					{
@@ -114,16 +69,6 @@ public class ChooseCourse extends HttpServlet
 						e.printStackTrace();
 
 					}
-//					}
-//					else
-//					{
-//						// %>
-//						// <script language="javascript">
-//						// alert("此课程人数已满！");
-//						// window.location.href="choosecourse.jsp";
-//						// </script>
-//						// <%
-//					}
 			}
 
 		out.flush();

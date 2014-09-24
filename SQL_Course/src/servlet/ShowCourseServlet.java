@@ -12,10 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.CookieHandler;
 
 import bean.DataBase;
-import bean.common;
+
 
 
 public class ShowCourseServlet extends HttpServlet
@@ -39,12 +38,7 @@ public class ShowCourseServlet extends HttpServlet
 		ResultSet rs;
 
 		String sno = request.getParameter("sno");
-//		user loginUser = null;
-		
-//		loginUser = (user) request.getSession().getAttribute("user");
-		
-//		if(loginUser == null)
-//			return;
+
 		
 		try
 		{
@@ -57,14 +51,13 @@ public class ShowCourseServlet extends HttpServlet
 			out.print("<tbody>");
 			while (rs.next())
 			{
-				common addnum = new common();
 
 				String id = rs.getString("cno");
 				String type = rs.getString("ctype");
-				addnum.setCourseid(id);
+
 				String course_name = rs.getString("cname");
 				int limit = rs.getInt("cmax");
-				int n = limit - addnum.count();
+				int n = limit - db.getCount(id);
 				DataBase dc = new DataBase();
 				boolean chosen = dc.havechosen(sno, id);
 				
@@ -78,7 +71,6 @@ public class ShowCourseServlet extends HttpServlet
 					out.print("<td><button>取消</button></td>");
 				else
 					out.print("<td><button>选课</button></td>");
-				//out.print("<td><a class=\"choose\" id=\"choose\"onclick=\"aspiration('<%=status %>','<%=id %>','<%=userName %>','<%=limit %>','<%=limit-n %>')\">选课</a></td>");
 				out.print("</tr>");
 			}
 		}
