@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>validateCode.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+    function refresh(obj) {
+        obj.src = "imageServlet?"+Math.random();
+    }
+    </script>
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+</head>
+
+<body>
+	<form action="JudgeValidate.do" method="get">
+		<label>输入验证码</label><br /> <input type="text" name="randomCode" /><img
+			title="点击更换" onclick="javascript:refresh(this);" src="imageServlet"><br />
+		<input type="submit" value="submit">
+	</form>
+</body>
+</html>
