@@ -1,5 +1,5 @@
-<%@ page language="java" import="java.util.*,java.sql.*,java.io.*,bean.*" pageEncoding="utf-8"%>
-<jsp:useBean id="db" class="bean.DataBase" scope="page"/>
+<%@ page language="java" import="java.util.*,java.sql.*,java.io.*" pageEncoding="utf-8"%>
+<jsp:useBean id="db" class="model.DataBase" scope="page"/>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -13,29 +13,25 @@
 	   
 	int courselimit=new Integer(request.getParameter("limited")).intValue();
 
-	course newCourse = new course();
-	newCourse.setCourseId(courseid);
-	newCourse.setCourseName(coursename);
-	newCourse.setLimited(courselimit);
-    newCourse.setCtype(courseType);
+
     
     request.setCharacterEncoding("utf-8");
-	sql = "select * from course where cno="+newCourse.getCourseId();
+	sql = "select * from course where cno="+courseid;
 	rs = db.executeQuery(sql);
 	if(rs.next())
 	{
 		%>
-		<script>
+<!-- 		<script>
 			alert("已经有过该课程编号的课程");
 			window.location.href="addcourse.jsp";
-		</script>
+		</script> -->
 		<% 
 	}
 	sql = "insert into course set "
-        + "cno='" + newCourse.getCourseId() + "', "
-        + "cname='" + newCourse.getCourseName() + "', "
-        + "ctype='" + newCourse.getCtype() + "', "
-        + "cmax=" + newCourse.getLimited() ;
+        + "cno='" + courseid + "', "
+        + "cname='" + coursename + "', "
+        + "ctype='" + courseType + "', "
+        + "cmax=" + courselimit ;
 
 %>
   

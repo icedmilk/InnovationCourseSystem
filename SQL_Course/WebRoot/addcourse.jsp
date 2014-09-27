@@ -1,6 +1,6 @@
-<%@ page language="java" import="java.util.*,java.sql.*,bean.*"
+<%@ page language="java" import="java.util.*,java.sql.*,model.*"
 	pageEncoding="utf-8"%>
-<jsp:useBean id="db" class="bean.DataBase" scope="page" />
+<jsp:useBean id="db" class="model.DataBase" scope="page" />
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -8,12 +8,10 @@
 			+ path + "/";
 %>
 <%
-	course vcourse = new course();
-	user loginUser = null;
+
 	String userName = "";
 	String realName = "";
-	loginUser = (user) session.getAttribute("user");
-	realName = loginUser.getRealname();
+
 	request.setCharacterEncoding("utf-8");
 %>
 

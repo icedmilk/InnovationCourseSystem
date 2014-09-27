@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.DataBase;
+import model.DataBase;
+
 
 public class OverallSituation extends HttpServlet
 {

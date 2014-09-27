@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.DataBase;
+import model.DataBase;
+import model.Star;
+
 
 public class CoreAlgorithm extends HttpServlet
 {
@@ -161,11 +163,20 @@ public class CoreAlgorithm extends HttpServlet
 										// 更新状态为-1.代表为没选中
 										for (int j = 0; j < count2; j++)
 										{
+											Star star = new Star();
+											String sql3 = "update student set star=star+"
+													+ (int) (star.getStar(
+															temp2[j], Cno[k]) / 2)
+													+ " where sno='"
+													+ temp2[j]
+													+ "'";
 											String sqlunchoose = "update sc set cstatus = -1 where sno = "
 													+ temp2[j]
 													+ " and cno = "
 													+ Cno[k];
+											db.executeQuery(sql3);
 											db.executeUpdate(sqlunchoose);
+
 										}
 
 										break;
@@ -214,7 +225,6 @@ public class CoreAlgorithm extends HttpServlet
 					}
 					catch (SQLException e)
 					{
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.DataBase;
+import model.DataBase;
+import model.CourseHandler;
+
 
 public class WhatIChoose extends HttpServlet
 {
@@ -59,8 +61,8 @@ public class WhatIChoose extends HttpServlet
 			{
 
 				int limited = rs.getInt("cmax");
-
-				int n = limited - db.getCount(rs.getString("cno"));
+				CourseHandler ch = new CourseHandler();
+				int n = limited - ch.getCount(rs.getString("cno"));
 
 				out.print("<tr>");
 				out.print("<td>" + rs.getString("cno") + "</td>");

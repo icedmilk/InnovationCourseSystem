@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*,java.sql.*" pageEncoding="utf-8"%>
-<jsp:useBean id="db" class="bean.DataBase" scope="page"/>
+<jsp:useBean id="db" class="model.DataBase" scope="page"/>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";

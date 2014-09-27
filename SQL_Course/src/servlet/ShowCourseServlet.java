@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.DataBase;
+import model.CourseHandler;
 
-import bean.DataBase;
+
 
 
 
@@ -57,9 +59,9 @@ public class ShowCourseServlet extends HttpServlet
 
 				String course_name = rs.getString("cname");
 				int limit = rs.getInt("cmax");
-				int n = limit - db.getCount(id);
-				DataBase dc = new DataBase();
-				boolean chosen = dc.havechosen(sno, id);
+				CourseHandler ch = new CourseHandler();
+				int n = limit - ch.getCount(id);
+				boolean chosen = ch.havechosen(sno, id);
 				
 				out.print("<tr>");
 				out.print("<td>" + id + "</td>");

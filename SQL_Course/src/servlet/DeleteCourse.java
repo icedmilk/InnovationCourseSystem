@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.DataBase;
+import model.DataBase;
+
 
 public class DeleteCourse extends HttpServlet
 {
@@ -43,7 +44,6 @@ public class DeleteCourse extends HttpServlet
 			e.printStackTrace();
 		}
 
-		response.sendRedirect("situation.jsp");
 
 		out.flush();
 		out.close();

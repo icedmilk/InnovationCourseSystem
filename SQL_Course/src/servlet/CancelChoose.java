@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.DataBase;
+import model.DataBase;
+import model.Star;
 
 
 public class CancelChoose extends HttpServlet
@@ -29,22 +30,24 @@ public class CancelChoose extends HttpServlet
 		DataBase db = new DataBase();
 
 		String sql = "select * from sc";
-		String delUser = request.getParameter("sno");
-		String delId = request.getParameter("cno");
-		sql = "delete from sc where sno = '" + delUser + "' and cno='" + delId
-				+ "' ";
+		String sno = request.getParameter("sno");
+		String cno = request.getParameter("cno");
+		sql = "delete from sc where sno = '" + sno + "' and cno='" + cno + "' ";
+		Star star = new Star();
+		
+		String sql2 = "update student set star=star+" + star.getStar(sno, cno)
+				+ " where sno='" + sno + "'";
 
 		try
 		{
 			db.execute(sql);
+			db.execute(sql2);
 		}
 
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-
-		//response.sendRedirect("view.jsp?user=" + delUser + "");
 
 		out.flush();
 		out.close();

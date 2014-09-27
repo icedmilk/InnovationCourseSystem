@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.DataBase;
+import model.DataBase;
+
 
 public class MessageBox extends HttpServlet
 {
@@ -36,7 +37,7 @@ public class MessageBox extends HttpServlet
 			String InfoSno;
 
 			InfoSno = rsInfo.getString(1);
-			if (InfoSno != null)
+			if (rsInfo.getString(1) != null)
 			{
 				String[] splited = InfoSno.split("：");
 				InfoSno = splited[0] + "：</br></br><strong>" + splited[1]
@@ -49,7 +50,6 @@ public class MessageBox extends HttpServlet
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

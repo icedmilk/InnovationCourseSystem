@@ -38,7 +38,7 @@ body {
 	height: 24px;
 	border: 2px solid #ccc;
 	background: #fff;
-	color: #666 font-size:  14px;
+	color: #666 font-size:   14px;
 	text-indent: 5px;
 }
 
@@ -61,45 +61,45 @@ body {
 	font-size: 14px;
 }
 
-#reg,#login {
+#reg,#login,#addcourse {
 	padding: 15px 0 0 15px;
 }
 
-#reg p,#login p {
+#reg p,#login p,#addcourse p {
 	margin: 10px 0;
 	padding: 0;
 }
 
-#reg .text,#login .text {
+#reg .text,#login .text,#addcourse .text {
 	border-radius: 5px; /*椭圆角*/
 	border: 1px solid #ccc;
 	background: #fff;
 	width: 200px;
 	height: 25px;
 	line-height: 5px;
-	font-size: 13px color:  #666;
+	font-size: 13px color:   #666;
 }
 
-#reg p label,#login p label {
+#reg p label,#login p label,#addcourse p label {
 	font-size: 13px;
 	color: #666;
 }
 
-#reg .star,#login .star {
+#reg .star,#login .star,#addcourse .star {
 	color: red;
 }
 
-#reg ol,#login ol {
+#reg ol,#login ol,#addcourse ol {
 	margin: 0;
 	padding: 0 0 0 20px;
 	color: maroon;
 }
 
-#reg ol li,#login ol li {
+#reg ol li,#login ol li,#addcourse ol li {
 	height: 20px
 }
 
-#reg .succ,#login .succ {
+#reg .succ,#login .succ,#addcourse .succ {
 	display: inline-block;
 	width: 25px;
 	height: 20px;

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.DataBase;
+import model.DataBase;
 
 public class AddCourse extends HttpServlet
 {
@@ -29,18 +29,17 @@ public class AddCourse extends HttpServlet
 		String sql = "select * from course";
 
 		request.setCharacterEncoding("utf-8");
-		String courseid = request.getParameter("courseId");
-		String coursename = request.getParameter("courseName");
-		String courseType = request.getParameter("courseType");
+		String courseid = request.getParameter("cno");
+		String coursename = request.getParameter("cname");
+		String courseType = request.getParameter("ctype");
 
-		int courselimit = new Integer(request.getParameter("limited"))
-				.intValue();
+		int courselimit = new Integer(Integer.parseInt(request
+				.getParameter("limit")));
 
 		request.setCharacterEncoding("utf-8");
 
 		try
 		{
-
 
 			sql = "insert into course set " + "cno='" + courseid + "', "
 					+ "cname='" + coursename + "', " + "ctype='" + courseType

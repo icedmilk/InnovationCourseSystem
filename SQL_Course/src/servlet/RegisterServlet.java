@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.DataBase;
+import model.DataBase;
+
 
 public class RegisterServlet extends HttpServlet
 {
@@ -32,16 +33,16 @@ public class RegisterServlet extends HttpServlet
 		try
 		{
 			Thread.sleep(1000);
-		} catch (InterruptedException e1)
+		}
+		catch (InterruptedException e1)
 		{
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		DataBase db = new DataBase();
-		
+
 		request.setCharacterEncoding("UTF-8");
 		String sno = request.getParameter("sno");
 		String password = request.getParameter("password");
@@ -57,8 +58,14 @@ public class RegisterServlet extends HttpServlet
 				{
 					if (password != null)
 					{
-						sql = "insert into student(sno,spwd,sname) values('"
-								+ sno + "','" + password + "','" + name + "')";
+						sql = "insert into student(sno,spwd,sname,star) values('"
+								+ sno
+								+ "','"
+								+ password
+								+ "','"
+								+ name
+								+ "','"
+								+ 24 + "')";
 
 						db.executeUpdate(sql);
 					}
@@ -69,9 +76,9 @@ public class RegisterServlet extends HttpServlet
 					out.print("false");
 				}
 			}
-		} catch (SQLException e)
+		}
+		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

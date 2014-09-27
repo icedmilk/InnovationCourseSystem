@@ -1,5 +1,4 @@
-#Fri Sep 19 01:27:20 CST 2014
+#Thu Sep 25 11:04:43 CST 2014
 eclipse.preferences.version=1
-encoding//WebRoot/js/courseValidate.js=UTF-8
-encoding//src/bean/DataBase.java=UTF-8
+encoding//src/model/DataBase.java=UTF-8
 encoding//src/servlet/ShowCourseServlet.java=UTF-8

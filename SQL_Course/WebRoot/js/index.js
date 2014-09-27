@@ -52,8 +52,7 @@ $(function()
 
 /*mv to login.js*/
 	
-	$('#messagebox').click(function(){
-		//MessageBox();
+	$('#charts').click(function(){
 		OverallSituation();
 		$.ajax({
 			url: 'pivot.html',
@@ -61,7 +60,11 @@ $(function()
 				$('header').append('<iframe src="pivot.html" frameborder="0" scrolling="no" width="100%" height="700"></iframe>');
 			}
 		});
-//		$('header').append("<div id='output'></div>")
+		$('body').click();
+	});
+	
+	$('#messagebox').click(function(){
+		MessageBox();
 
 		$('body').click();
 	});
@@ -309,6 +312,167 @@ $(function()
 		modal : true,
 		autoOpen : false
 	});
+	$('#aa').validate({
+		rules:
+		{
+			randomCode:
+			{
+				required: true,
+				remote:
+				{
+					url: 'JudgeValidate.do',
+					type: 'POST'
+				}
+			}
+		},
+		messages:
+		{
+			randomCode:
+			{
+				remote: '验证码错误'
+			}
+		},
+
+		highlight: function(element, errorClass)
+		{
+			$(element).css("border", "2px solid #ff2400");
+			$(element).parent().find('span').removeClass('succ');
+		},
+
+		unhighlight: function(element, errorClass)
+		{
+			$(element).css("border", "1px solid #ccc");
+			//$(element).parent().find('span').html('√').css('color', 'green');
+			$(element).parent().find('span').addClass('succ').html("");
+		}
+	
+	});
+	
+	
+	
+	$.ajax({
+		url: 'SuggestAddCourse.show',
+		success: function(resp){
+			$('#addcourse').prepend(resp);
+		}
+	});
+	$('#addcourse').dialog({
+		width : "360px",
+		modal : true,
+		autoOpen : false,
+		buttons:
+		{
+			"Submit": function()
+			{
+				$('#addcourse').submit();
+			},
+
+			"Cancel": function()
+			{
+				$(this).dialog('close');
+			}
+		},
+	}).buttonset().validate(
+	{
+		submitHandler: function(form)
+		{
+			$(this).ajaxSubmit(
+			{
+				type: 'POST',
+				url: 'AddCourse.do',
+				data: {
+					cno: $('#cno').val(),
+					cname: $('#cname').val(),
+					ctype: $('#ctype').val(),
+					limit: $('#lim').val()
+				},
+				beforeSubmit: function()
+				{
+					//alert("a");
+					$('#addcourse').dialog('widget').find('button').eq(1).button('disable');
+
+					$('#loading').dialog('open');
+				},
+				success: function(responseText)
+				{
+					
+					$('#addcourse').dialog('widget').find('button').eq(1).button('enable');
+					
+					$('#loading').addClass('success').html('Success');
+
+					setTimeout(function()
+					{
+						$('#loading').dialog('close');
+						$('#addcourse').dialog('close');
+						$('#addcours').resetForm();
+						$('#addcours span.star').html('*').removeClass('succ');
+						//alert($('#name').val());
+						
+						
+					}, 1000);
+				
+				}
+
+			});
+		},
+		//debug: true,
+		errorLabelContainer: 'ol.addcourse_error',
+		wrapper: 'li',
+
+		rules:
+		{
+			cno:
+			{
+				required: true,
+				minlength: 1,
+				remote:
+				{
+					url: 'CourseNumberValidate.do',/////
+					type: 'POST'
+				}
+			},
+			cname:
+			{
+				required: true,
+				minlength: 2
+			},
+			ctype:
+			{
+				required: true,
+				minlength: 5
+			},
+			lim:
+			{
+				required: true,
+				
+			}
+		},
+		messages:
+		{
+			cno:
+			{
+				remote: '已有相同课程号'
+			}
+		},
+
+		highlight: function(element, errorClass)
+		{
+			$(element).css("border", "2px solid #ff2400");
+			$(element).parent().find('span').removeClass('succ');
+		},
+
+		unhighlight: function(element, errorClass)
+		{
+			$(element).css("border", "1px solid #ccc");
+			//$(element).parent().find('span').html('√').css('color', 'green');
+			$(element).parent().find('span').addClass('succ').html("");
+		}
+
+	});
+	
+	
+	
+	
 	
 	
 	
@@ -379,4 +543,12 @@ $(function()
 			}
 		});
 	});
+	
+	$('#refresh').click(function(){
+		$('#refresh').attr("src", "imageServlet?"+Math.random());
+		$('#randomCode').val("");
+		
+	});
+
+	
 });
