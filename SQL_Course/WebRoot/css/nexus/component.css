@@ -30,6 +30,7 @@
 }
 
 .gn-menu-main {
+		background-color: #FDFDFD;/*lucheng*/
 		position: fixed;
 		top: 0;
 		left: 0;
