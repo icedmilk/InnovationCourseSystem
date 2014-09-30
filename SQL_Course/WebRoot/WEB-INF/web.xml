@@ -5,70 +5,82 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
   <display-name></display-name>
+  
+  <listener>
+    <listener-class>smu.vccs.web.listener.SessionCounter</listener-class>
+  </listener>
+  
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>servlet.RegisterServlet</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.RegisterServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>servlet.LoginServlet</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ShowCourseServlet</servlet-name>
-    <servlet-class>servlet.ShowCourseServlet</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.ShowCourseServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>WhatIChoose</servlet-name>
-    <servlet-class>servlet.WhatIChoose</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.WhatIChoose</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>MessageBox</servlet-name>
-    <servlet-class>servlet.MessageBox</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.MessageBox</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>OverallSituation</servlet-name>
-    <servlet-class>servlet.OverallSituation</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.OverallSituation</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ChooseCourse</servlet-name>
-    <servlet-class>servlet.ChooseCourse</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.ChooseCourse</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AddCourse</servlet-name>
-    <servlet-class>servlet.AddCourse</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.AddCourse</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>DeleteCourse</servlet-name>
-    <servlet-class>servlet.DeleteCourse</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.DeleteCourse</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CancelChoose</servlet-name>
-    <servlet-class>servlet.CancelChoose</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.CancelChoose</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CoreAlgorithm</servlet-name>
-    <servlet-class>servlet.CoreAlgorithm</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.CoreAlgorithm</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>GetStatus</servlet-name>
-    <servlet-class>servlet.GetStatus</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.GetStatus</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>SuggestAddCourse</servlet-name>
-    <servlet-class>servlet.SuggestAddCourse</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.SuggestAddCourse</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>CourseNumberValidate</servlet-name>
-    <servlet-class>servlet.CourseNumberValidate</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.CourseNumberValidate</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Validate</servlet-name>
-    <servlet-class>servlet.Validate</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.Validate</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>JudgeValidate</servlet-name>
-    <servlet-class>servlet.JudgeValidate</servlet-class>
+    <servlet-class>smu.vccs.web.servlet.JudgeValidate</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>GetSessionCount</servlet-name>
+    <servlet-class>smu.vccs.web.servlet.GetSessionCount</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -140,7 +152,14 @@
   <servlet-mapping>
     <servlet-name>JudgeValidate</servlet-name>
     <url-pattern>/JudgeValidate.do</url-pattern>
-  </servlet-mapping>	
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetSessionCount</servlet-name>
+    <url-pattern>/GetSessionCount</url-pattern>
+  </servlet-mapping>
+
+
+
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>

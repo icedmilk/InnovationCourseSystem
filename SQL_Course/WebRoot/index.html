@@ -53,21 +53,19 @@
 		$.supersized({
 			autoplay: 1,
 			// Functionality
-			slide_interval          :   3000000,		// Length between transitions
+			slide_interval          :   2000,		// Length between transitions
 			transition              :   1, 			// 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
 			transition_speed		:	700,		// Speed of transition
 			progress_bar			:	false,			// Timer for each slide										   
 			// Components							
 			slide_links				:	'blank',	// Individual links for each slide (Options: false, 'num', 'name', 'blank')
 			slides 					:  	[			// Slideshow Images
-											{image : 'http://img4.imgtn.bdimg.com/it/u=401759369,2338956713&fm=23&gp=0.jpg', title : '实时更新', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-1.jpg', url : 'http://www.baidu.com/'},
-											{image : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-2.jpg', title : 'Image Credit: Maria Kazvan', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-2.jpg', url : 'http://www.nonsensesociety.com/2011/04/maria-kazvan/'},  
-											{image : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg', title : 'Image Credit: Maria Kazvan', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/kazvan-3.jpg', url : 'http://www.nonsensesociety.com/2011/04/maria-kazvan/'},
-											{image : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/wojno-1.jpg', title : 'Image Credit: Colin Wojno', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/wojno-1.jpg', url : 'http://www.nonsensesociety.com/2011/03/colin/'},
-											{image : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/wojno-2.jpg', title : 'Image Credit: Colin Wojno', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/wojno-2.jpg', url : 'http://www.nonsensesociety.com/2011/03/colin/'},
-											{image : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/wojno-3.jpg', title : 'Image Credit: Colin Wojno', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/wojno-3.jpg', url : 'http://www.nonsensesociety.com/2011/03/colin/'},
-											{image : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/shaden-1.jpg', title : 'Image Credit: Brooke Shaden', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/shaden-1.jpg', url : 'http://www.nonsensesociety.com/2011/06/brooke-shaden/'},
-											{image : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/shaden-2.jpg', title : 'Image Credit: Brooke Shaden', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/shaden-2.jpg', url : 'http://www.nonsensesociety.com/2011/06/brooke-shaden/'}
+											{image : 'img/indeximg/pic4.jpg', title : 'Aspiration Based'},
+											{image : 'img/indeximg/pic1.jpg', title : 'Real Time Log Analyze', url:'http://103.228.131.243/VCCS/index.html#/dashboard/script/customize.js?index=real_time'},
+											{image : 'img/indeximg/pic3.jpg', title : 'Session Count',url : 'real_time.html' },
+											{image : 'img/indeximg/pic.jpg', title : 'Data Analyzing',url : 'pivot.html'},
+											
+											//{image : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/slides/shaden-2.jpg', title : 'Image Credit: Brooke Shaden', thumb : 'http://buildinternet.s3.amazonaws.com/projects/supersized/3.2/thumbs/shaden-2.jpg', url : 'http://www.nonsensesociety.com/2011/06/brooke-shaden/'}
 										]
 			
 		});
@@ -110,8 +108,8 @@ ul#demo-block li a {
 			<li class="gn-trigger"><a class="gn-icon gn-icon-menu"> <span>Menu</span>
 			</a>
 				<nav class="gn-menu-wrapper">
-					<div class="gn-scroller">
-						<ul class="gn-menu">
+					<div class="gn-scroller" style="font-family:微软雅黑;">
+						<ul class="gn-menu" >
 
 							<!-- <li class="gn-search-item"><input placeholder="Search"
 								type="search" class="gn-search"> <a
@@ -123,14 +121,14 @@ ul#demo-block li a {
 									<li><a class="gn-icon gn-icon-photoshop">Photoshop
 											files</a></li>
 								</ul></li>-->
-							<li><a class="gn-icon gn-icon-cog" id="changestat">Change Status</a></li>
-							<li><a class="gn-icon gn-icon-help" id="courseinfo">Which Course Can I choose?</a>
+							<li><a class="gn-icon gn-icon-cog" id="changestat">选课阶段</a></li>
+							<li><a class="gn-icon gn-icon-help" id="courseinfo">可选课程</a>
 								<ul class="gn-submenu">
-									<li><a class="gn-icon gn-icon-archive" id="messagebox">What's the result?</a></li>
-									<li><a class="gn-icon gn-icon-article" id="chosen">What I have chosen?</a></li>
+									<li><a class="gn-icon gn-icon-archive" id="messagebox">消息</a></li>
+									<li><a class="gn-icon gn-icon-article" id="chosen" >已选课程</a></li>
 								</ul>
 							</li>
-							<li><a class="gn-icon gn-icon-pictures" id="charts">Charts</a></li>
+							<li><a class="gn-icon gn-icon-pictures" id="charts">透视表</a></li>
 <!-- 									<li><a class="gn-icon gn-icon-videos">Videos</a></li> -->
 						</ul>
 					</div>
@@ -163,13 +161,13 @@ ul#demo-block li a {
 
 		<header>
 			<ul id="demo-block">
-				<li><a href="http://buildinternet.com/project/supersized/"
-					target="_blank"> <img src="img/supersized-logo.png" /> </a></li>
-				<li>Photographers: <a
-					href="http://cargocollective.com/mariakazvan" target="_blank">Maria
-						Kazvan</a> , <a href="http://colindub.com" target="_blank">Colin
-						Wojno</a> , &amp; <a href="http://brookeshaden.com/" target="_blank">Brooke
-						Shaden</a></li>
+				<li><a href="index.html"
+					target="_blank"> <img src="img/logo.png" /> </a></li>
+				
+				
+				<li>Team members: <a
+					href="http://www.luchengsmu.com" target="_blank">Cheng, Lu
+						</a> , <a>ShiWei, Chen</a> , <a>XiaoJin, Jin</a>, &amp; <a>WeiQi, Kong</a></li>
 			</ul>
 
 			<!--End of styles-->
