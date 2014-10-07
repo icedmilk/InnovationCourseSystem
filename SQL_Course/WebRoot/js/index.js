@@ -520,6 +520,11 @@ $(function()
 		$('body').click();
 	});
 	
+	$('#issue').click(function(){
+		
+		$('#addcourse').dialog('open');
+		$('body').click();
+	});
 	
 	$('#submitChange').click(function(){
 		event.preventDefault();

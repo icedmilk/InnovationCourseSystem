@@ -26,18 +26,21 @@ public class JudgeValidate extends HttpServlet
 
 		HttpSession session = request.getSession();
 		String val = (String) session.getAttribute("RANDOMVALIDATECODEKEY");
-		val.toUpperCase();
-		if(val.equals(request.getParameter("randomCode").toUpperCase()))
+		if (val != null)
 		{
-			out.print("true");
+			val.toUpperCase();
+			if (val.equals(request.getParameter("randomCode").toUpperCase()))
+			{
+				out.print("true");
+			}
+			else
+				out.print("false");
 		}
 		else
-			out.print("false");
-		
+			out.print("null");
 		out.flush();
 		out.close();
 	}
-
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException
