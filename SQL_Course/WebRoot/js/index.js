@@ -261,7 +261,7 @@ $(function()
 									$clickButton.children('span').eq(1).text('取消');
 									$('#rate').dialog("close");
 									//alert('成功');
-									$('.btn-primary').unbind();
+									//$('.btn-primary').unbind();//Question,lucheng
 									
 								}
 							});
@@ -439,7 +439,7 @@ $(function()
 			ctype:
 			{
 				required: true,
-				minlength: 5
+				minlength: 1
 			},
 			lim:
 			{

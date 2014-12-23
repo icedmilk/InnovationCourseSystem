@@ -15,7 +15,7 @@ public class SessionCounter implements HttpSessionListener
 	@Override
 	public void sessionCreated(HttpSessionEvent se)
 	{
-		System.out.println("建立Session");
+		System.out.println("Create Session");
 		activeSessions++;
 
 	}
@@ -23,7 +23,7 @@ public class SessionCounter implements HttpSessionListener
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se)
 	{
-		System.out.println("销毁Session");
+		System.out.println("Destory Session");
 		activeSessions--;
 	}
 
